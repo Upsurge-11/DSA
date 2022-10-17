@@ -20,6 +20,22 @@ void moveZeroes(vector<int> &nums)
 
 int main()
 {
+  int n;
+  cin >> n;
+  vector<int> v(n);
+  for (int i = 0; i < n; i++)
+  {
+    cin >> v[i];
+  }
+
+  moveZeroes(v);
+
+  for (int i = 0; i < n; i++)
+  {
+    cout << v[i] << " ";
+  }
+
+  cout << "\n";
 
   return 0;
 }

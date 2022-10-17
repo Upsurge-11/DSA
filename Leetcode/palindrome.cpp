@@ -18,6 +18,12 @@ bool isPalindrome(int x)
 
 int main()
 {
+  int n;
+  cin >> n;
+  if (isPalindrome)
+    cout << "Palindrome\n";
+  else
+    cout << "Not Palindrome\n";
 
   return 0;
 }
