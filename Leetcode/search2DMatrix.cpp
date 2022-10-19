@@ -2,23 +2,36 @@
 
 using namespace std;
 
+// bool searchMatrix(vector<vector<int>> &matrix, int target)
+// {
+//   int n = matrix.size(), m = matrix[0].size(), row = 0;
+//   for (int i = 0; i < n; i++)
+//   {
+//     if (matrix[i][0] == target)
+//       return true;
+//     if (matrix[i][0] > target && i > 0)
+//     {
+//       row == i - 1;
+//       break;
+//     }
+//   }
+//   for (int i = 0; i < m; i++)
+//   {
+//     if (matrix[row][i] == target)
+//       return true;
+//   }
+//   return false;
+// }
+
 bool searchMatrix(vector<vector<int>> &matrix, int target)
 {
-  int n = matrix[0].size(), m = matrix.size(), row = 0;
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < matrix.size(); i++)
   {
-    if (matrix[i][0] == target)
-      return true;
-    if (matrix[i][0] > target && i > 0)
+    for (int j = 0; j < matrix[i].size(); j++)
     {
-      row == i - 1;
-      break;
+      if (matrix[i][j] == target)
+        return true;
     }
-  }
-  for (int i = 0; i < m; i++)
-  {
-    if (matrix[row][i] == target)
-      return true;
   }
   return false;
 }
@@ -27,12 +40,12 @@ int main()
 {
   int n, m, target;
   cin >> n >> m >> target;
-  vector<vector<int>> matrix(m);
+  vector<vector<int>> matrix(n);
 
-  for (int i = 0; i < m; i++)
+  for (int i = 0; i < n; i++)
   {
-    vector<int> row(n);
-    for (int j = 0; j < n; j++)
+    vector<int> row(m);
+    for (int j = 0; j < m; j++)
     {
       cin >> row[j];
     }

@@ -11,15 +11,41 @@ struct ListNode
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// ListNode *deleteMiddle(ListNode *head)
+// {
+//   ListNode *temp = head;
+//   int count = 1;
+//   while (temp->next != NULL)
+//   {
+//     count++;
+//     temp = temp->next;
+//   }
+//   count /= 2;
+//   temp = head;
+//   while (count--)
+//   {
+//     temp = temp->next;
+//   }
+//   temp->val = temp->next->val;
+//   temp->next = temp->next->next;
+//   return head;
+// }
+
 ListNode *deleteMiddle(ListNode *head)
 {
-  ListNode *temp = head;
-  int count = 0;
-  while (temp->next != NULL)
+  if (head == NULL || head->next == NULL)
+    return NULL;
+  ListNode *slow = head;
+  ListNode *fast = head;
+  ListNode *prev = NULL;
+  while (fast != NULL && fast->next != NULL)
   {
-    count++;
-    temp = temp->next;
+    prev = slow;
+    slow = slow->next;
+    fast = fast->next->next;
   }
+  prev->next = slow->next;
+  return head;
 }
 
 int main()

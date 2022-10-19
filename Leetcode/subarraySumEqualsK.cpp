@@ -4,23 +4,20 @@ using namespace std;
 
 int subarraySum(vector<int> &nums, int k)
 {
-  int ans = 0, sum = 0;
+  int count = 0;
+  int sum = 0;
+  unordered_map<int, int> map;
+  map[sum] = 1;
   for (int i = 0; i < nums.size(); i++)
   {
-    if (nums[i] == k || sum == k)
-    {
-      ans++;
-      sum = 0;
-      continue;
-    }
-    else if (sum > k)
-    {
-      sum = 0;
-      continue;
-    }
     sum += nums[i];
+    if (map.find(sum - k) != map.end())
+    {
+      count += map[sum - k];
+    }
+    map[sum]++;
   }
-  return ans;
+  return count;
 }
 
 int main()
