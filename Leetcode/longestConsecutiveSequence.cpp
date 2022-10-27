@@ -4,21 +4,28 @@ using namespace std;
 
 int longestConsecutive(vector<int> &nums)
 {
+  if (nums.size() == 0)
+  {
+    return 0;
+  }
   sort(nums.begin(), nums.end());
-  int count = 0, ans = 0;
+  int count = 1, ans = 1;
   for (int i = 1; i < nums.size(); i++)
   {
-    if (nums[i] == nums[i - 1] + 1)
+    if (nums[i] != nums[i - 1])
     {
-      count++;
-    }
-    else
-    {
-      ans = max(ans, count);
-      count = 1;
+      if (nums[i] == nums[i - 1] + 1)
+      {
+        count++;
+      }
+      else
+      {
+        ans = max(ans, count);
+        count = 1;
+      }
     }
   }
-  return ans;
+  return max(count, ans);
 }
 
 int main()
