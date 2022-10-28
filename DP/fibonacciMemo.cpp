@@ -12,8 +12,7 @@ int fib(vector<int> &dp, int n)
   {
     return dp[n];
   }
-  dp[n] = fib(dp, n - 1) + fib(dp, n - 2);
-  return dp[n];
+  return dp[n] = fib(dp, n - 1) + fib(dp, n - 2);
 }
 
 int main()
