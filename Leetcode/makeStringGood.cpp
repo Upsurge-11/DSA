@@ -4,9 +4,7 @@ using namespace std;
 
 string makeGood(string s)
 {
-  int n = s.length();
-
-  for (int i = 1; i < n; i++)
+  for (int i = 1; i < s.size(); i++)
   {
     if (abs(s[i] - s[i - 1]) == 32)
     {
