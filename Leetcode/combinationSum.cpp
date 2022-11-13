@@ -2,27 +2,36 @@
 
 using namespace std;
 
-void util(int ind, vector<vector<int>> &matrix, vector<int> arr, vector<int> &temp, int target, int sum)
+void util(int index, int target, vector<vector<int>> &ans, vector<int> candidates, vector<int> ds)
 {
-  if (ind >= arr.size())
+  if (index < 0 || index >= candidates.size())
   {
-    if (sum == target)
-      matrix.push_back(temp);
+    if (target == 0)
+    {
+      ans.push_back(ds);
+      return;
+    }
     return;
   }
-  sum += arr[ind];
-  temp.push_back(arr[ind]);
-  util(ind + 1, matrix, arr, temp, target, sum);
-  temp.pop_back();
-  sum -= arr[ind];
-  util(ind + 1, matrix, arr, temp, target, sum);
+  if (target < 0)
+  {
+    return;
+  }
+  ds.push_back(candidates[index]);
+  target -= candidates[index];
+  util(index, target, ans, candidates, ds);
+  ds.pop_back();
+  target += candidates[index];
+  util(index + 1, target, ans, candidates, ds);
 }
 
 vector<vector<int>> combinationSum(vector<int> &candidates, int target)
 {
   vector<vector<int>> ans;
   vector<int> temp;
-  util(0, ans, candidates, temp, target, 0);
+
+  util(0, target, ans, candidates, temp);
+
   return ans;
 }
 
