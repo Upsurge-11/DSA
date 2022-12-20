@@ -16,7 +16,7 @@ void util(int index, int target, vector<vector<int>> &ans, vector<int> &candidat
     if (candidates[i] > target)
       break;
     temp.push_back(candidates[i]);
-    util(index + 1, target - candidates[i], ans, candidates, temp);
+    util(i + 1, target - candidates[i], ans, candidates, temp);
     temp.pop_back();
   }
 }
