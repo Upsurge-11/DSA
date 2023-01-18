@@ -15,5 +15,12 @@ int main()
     adj[b].push_back(a);
   }
 
+  for (int i = 0; i < n; i++)
+  {
+    for (int j = 0; j < adj[i].size(); j++)
+      cout << adj[i][j] << " ";
+    cout << "\n";
+  }
+
   return 0;
 }
