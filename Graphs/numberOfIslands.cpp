@@ -19,7 +19,7 @@ void bfs(int row, int col, vector<vector<int>> &vis, vector<vector<int>> &grid)
       {
         int neighbourRow = row + i;
         int neighbourCol = col + i;
-        if (neighbourRow >= 0 && neighbourRow < n && neighbourCol >= 0 && neighbourCol < m && grid[neighbourRow][neighbourCol] == '1' && !vis[neighbourRow][neighbourCol])
+        if (neighbourRow >= 0 && neighbourRow < n && neighbourCol >= 0 && neighbourCol < m && grid[neighbourRow][neighbourCol] == 1 && !vis[neighbourRow][neighbourCol])
         {
           vis[neighbourRow][neighbourCol] = 1;
           q.push({neighbourRow, neighbourCol});
@@ -37,7 +37,7 @@ int numIslands(vector<vector<int>> &grid)
   {
     for (int j = 0; j < m; j++)
     {
-      if (!vis[i][j] && grid[i][j] == '1')
+      if (!vis[i][j] && grid[i][j] == 1)
       {
         count++;
         bfs(i, j, vis, grid);
