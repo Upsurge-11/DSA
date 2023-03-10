@@ -20,7 +20,7 @@ public:
   Solution(ListNode *head)
   {
     this->head = head;
-    srand(std::time(0));
+    srand(time(0));
   }
 
   int getRandom()
