@@ -20,7 +20,7 @@ public:
   Solution(ListNode *head)
   {
     this->head = head;
-    std::srand(std::time(0));
+    srand(std::time(0));
   }
 
   int getRandom()
@@ -32,7 +32,7 @@ public:
     while (curr)
     {
       count++;
-      if (std::rand() % count == 0)
+      if (rand() % count == 0)
         result = curr->val;
       curr = curr->next;
     }
