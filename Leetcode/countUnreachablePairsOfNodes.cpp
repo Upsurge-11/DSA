@@ -14,6 +14,7 @@ void dfs(vector<int> adj[], int src, vector<bool> &vis, int &counter)
       dfs(adj, ele, vis, counter);
   }
 }
+
 long long countPairs(int n, vector<vector<int>> &edges)
 {
   vector<int> adj[n];
