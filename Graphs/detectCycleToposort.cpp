@@ -2,9 +2,9 @@
 
 using namespace std;
 
-vector<int> topoSort(int V, vector<int> adj[])
+bool topoSort(int V, vector<int> adj[])
 {
-  vector<int> ans;
+  int count = 0;
   vector<int> indegree(V, 0);
   for (int i = 0; i < V; i++)
     for (auto it : adj[i])
@@ -19,7 +19,7 @@ vector<int> topoSort(int V, vector<int> adj[])
   {
     int node = q.front();
     q.pop();
-    ans.push_back(node);
+    count++;
     for (auto it : adj[node])
     {
       indegree[it]--;
@@ -27,7 +27,7 @@ vector<int> topoSort(int V, vector<int> adj[])
         q.push(it);
     }
   }
-  return ans;
+  return !(count == V);
 }
 
 int main()
@@ -41,10 +41,8 @@ int main()
     cin >> u >> v;
     adj[u].push_back(v);
   }
-  vector<int> ans = topoSort(V, adj);
-  for (int i = 0; i < ans.size(); i++)
-    cout << ans[i] << " ";
-  cout << "\n";
+
+  cout << (topoSort(V, adj) ? "YES" : "NO") << "\n";
 
   return 0;
 }
