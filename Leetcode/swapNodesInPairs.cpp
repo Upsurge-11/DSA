@@ -15,7 +15,6 @@ ListNode *swapPairs(ListNode *head)
 {
   if (head == nullptr || head->next == nullptr)
     return head;
-
   ListNode *temp = head->next;
   head->next = swapPairs(temp->next);
   temp->next = head;
