@@ -20,10 +20,7 @@ int main()
   cin >> n;
   vector<int> prices(n);
   for (int i = 0; i < n; i++)
-  {
     cin >> prices[i];
-  }
-
   cout << maxProfit(prices) << "\n";
 
   return 0;

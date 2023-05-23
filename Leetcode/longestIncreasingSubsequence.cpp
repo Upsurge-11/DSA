@@ -2,42 +2,23 @@
 
 using namespace std;
 
-// int lengthOfLIS(vector<int> &nums)
-// {
-//   int count = INT_MIN;
-//   for (int i = 0; i < nums.size(); i++)
-//   {
-//     int temp = 1;
-//     int prev = INT_MIN;
-//     for (int j = i + 1; j < nums.size(); j++)
-//     {
-//       if ((nums[j] > nums[i]) && nums[j] > prev)
-//       {
-//         prev = nums[j];
-//         temp++;
-//       }
-//     }
-//     count = max(count, temp);
-//   }
-//   return count;
-// }
+int func(int ind, int prev_ind, vector<int> &nums, vector<vector<int>> &dp)
+{
+  if (ind == nums.size())
+    return 0;
+  if (dp[ind][prev_ind + 1] != -1)
+    return dp[ind][prev_ind + 1];
+  int take = INT_MIN;
+  if (prev_ind == -1 || nums[ind] > nums[prev_ind])
+    take = 1 + func(ind + 1, ind, nums, dp);
+  int nonTake = func(ind + 1, prev_ind, nums, dp);
+  return dp[ind][prev_ind + 1] = max(take, nonTake);
+}
 
 int lengthOfLIS(vector<int> &nums)
 {
-  vector<int> dp(nums.size(), 1);
-  int ans = 1;
-  for (int i = 1; i < nums.size(); i++)
-  {
-    for (int j = 0; j < i; j++)
-    {
-      if (nums[i] > nums[j])
-      {
-        dp[i] = max(dp[i], dp[j] + 1);
-        ans = max(ans, dp[i]);
-      }
-    }
-  }
-  return ans;
+  vector<vector<int>> dp(nums.size(), vector<int>(nums.size() + 1, -1));
+  return func(0, -1, nums, dp);
 }
 
 int main()
@@ -46,9 +27,7 @@ int main()
   cin >> n;
   vector<int> v(n);
   for (auto &i : v)
-  {
     cin >> i;
-  }
   cout << lengthOfLIS(v) << "\n";
 
   return 0;

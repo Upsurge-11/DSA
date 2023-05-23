@@ -2,27 +2,27 @@
 
 using namespace std;
 
-int solve(vector<vector<int>> &dp, string s1, string s2, int i1, int i2)
+int func(vector<vector<int>> &dp, string s1, string s2, int i, int j)
 {
-  if (i1 == 0)
-    return i2;
-  if (i2 == 0)
-    return i1;
-  if (dp[i1][i2] != -1)
-    return dp[i1][i2];
-  if (s1[i1 - 1] == s2[i2 - 1])
-    return dp[i1][i2] = solve(dp, s1, s2, i1 - 1, i2 - 1);
-  int ins = 1 + solve(dp, s1, s2, i1, i2 - 1);
-  int del = 1 + solve(dp, s1, s2, i1 - 1, i2);
-  int rep = 1 + solve(dp, s1, s2, i1 - 1, i2 - 1);
-  return dp[i1][i2] = min(ins, min(del, rep));
+  if (i == 0)
+    return j;
+  if (j == 0)
+    return i;
+  if (dp[i][j] != -1)
+    return dp[i][j];
+  if (s1[i - 1] == s2[j - 1])
+    return dp[i][j] = func(dp, s1, s2, i - 1, j - 1);
+  int ins = 1 + func(dp, s1, s2, i, j - 1);
+  int del = 1 + func(dp, s1, s2, i - 1, j);
+  int rep = 1 + func(dp, s1, s2, i - 1, j - 1);
+  return dp[i][j] = min(ins, min(del, rep));
 }
 
 int minDistance(string word1, string word2)
 {
   int n = word1.length(), m = word2.length();
   vector<vector<int>> dp(n + 1, vector<int>(m + 1, -1));
-  return solve(dp, word1, word2, n, m);
+  return func(dp, word1, word2, n, m);
 }
 
 int main()
