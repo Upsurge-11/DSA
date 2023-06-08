@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int addDigits(int num)
-{
+int addDigits(int num) {
   if (num == 0)
     return 0;
   if (num % 9 == 0)
@@ -11,8 +10,7 @@ int addDigits(int num)
   return num % 9;
 }
 
-int main()
-{
+int main() {
   int n;
   cin >> n;
   cout << addDigits(n) << "\n";
