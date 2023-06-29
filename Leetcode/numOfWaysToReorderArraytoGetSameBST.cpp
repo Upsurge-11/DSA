@@ -2,8 +2,8 @@
 
 using namespace std;
 
-long long dfs(vector<int> &nums, long long mod,
-              vector<vector<long long>> &comb) {
+vector<vector<long long>> table;
+long long dfs(vector<int> &nums, long long mod) {
   int n = nums.size();
   if (n <= 2)
     return 1;
@@ -14,23 +14,23 @@ long long dfs(vector<int> &nums, long long mod,
     else
       right.push_back(nums[i]);
   }
-  long long left_res = dfs(left, mod, comb) % mod;
-  long long right_res = dfs(right, mod, comb) % mod;
+  long long left_res = dfs(left, mod) % mod;
+  long long right_res = dfs(right, mod) % mod;
   int left_len = left.size(), right_len = right.size();
-  return (((comb[n - 1][left_len] * left_res) % mod) * right_res) % mod;
+  return (((table[n - 1][left_len] * left_res) % mod) * right_res) % mod;
 }
 
 int numOfWays(vector<int> &nums) {
   long long mod = 1e9 + 7;
   int n = nums.size();
-  vector<vector<long long>> comb(n + 1);
+  table.resize(n + 1);
   for (int i = 0; i < n + 1; ++i) {
-    comb[i] = vector<long long>(i + 1, 1);
+    table[i] = vector<long long>(i + 1, 1);
     for (int j = 1; j < i; ++j) {
-      comb[i][j] = (comb[i - 1][j - 1] + comb[i - 1][j]) % mod;
+      table[i][j] = (table[i - 1][j - 1] + table[i - 1][j]) % mod;
     }
   }
-  long long ans = dfs(nums, mod, comb);
+  long long ans = dfs(nums, mod);
   return (ans % mod - 1) % mod;
 }
 
