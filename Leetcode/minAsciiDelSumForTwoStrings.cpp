@@ -11,11 +11,7 @@ int lcs(string &s1, string &s2, int n, int m, vector<vector<int>> &dp)
   if (s1[n - 1] == s2[m - 1])
     return dp[n][m] = lcs(s1, s2, n - 1, m - 1, dp) + s1[n - 1];
   else
-  {
-    int lcs1 = lcs(s1, s2, n - 1, m, dp);
-    int lcs2 = lcs(s1, s2, n, m - 1, dp);
     return dp[n][m] = max(lcs(s1, s2, n - 1, m, dp), lcs(s1, s2, n, m - 1, dp));
-  }
 }
 
 int minimumDeleteSum(string s1, string s2)
