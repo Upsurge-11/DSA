@@ -7,7 +7,7 @@ int minDeletions(string s)
   vector<int> freq(26, 0);
   for (char c : s)
     freq[c - 'a']++;
-  sort(freq.begin(), freq.end(), greater<int>());
+  sort(freq.begin(), freq.end());
   int ans = 0;
   for (int i = 24; i >= 0; i--)
   {
