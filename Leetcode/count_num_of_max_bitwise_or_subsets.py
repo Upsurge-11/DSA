@@ -13,8 +13,7 @@ def countMaxOrValueSubsets(ans: int, curr_or_value: int, max_or_value: int, inde
     if curr_or_value == max_or_value:
       ans += 1
     return ans
-  ans = countMaxOrValueSubsets(ans, curr_or_value | nums[index], max_or_value, index + 1, nums) + countMaxOrValueSubsets(ans, curr_or_value, max_or_value, index + 1, nums)
-  return ans
+  return (countMaxOrValueSubsets(ans, curr_or_value | nums[index], max_or_value, index + 1, nums) + countMaxOrValueSubsets(ans, curr_or_value, max_or_value, index + 1, nums))
 
 if __name__ == '__main__':
   main()
