@@ -46,7 +46,7 @@ def replaceValueInTree(root: TreeNode) -> TreeNode:
     levelSum = 0
     for localSum, node in pq:
       levelSum += node.val
-    for i in range(n):
+    for _ in range(n):
       localSum, node = pq.popleft()
       childSum = 0
       if node.left: childSum += node.left.val
