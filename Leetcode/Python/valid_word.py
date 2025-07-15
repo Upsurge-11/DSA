@@ -10,10 +10,11 @@ def isValid(word: str) -> bool:
   for c in word:
     if not c.isalnum():
       return False
-    if c.lower() in 'aeiou':
-      has_vowel = True
-    elif c.lower() in 'bcdfghjklmnpqrstvwxyz':
-      has_consonant = True
+    if c.isalpha():
+      if c.lower() in 'aeiou':
+        has_vowel = True
+      else:
+        has_consonant = True
   return has_vowel and has_consonant
 
 if __name__ == '__main__':
