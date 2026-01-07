@@ -23,34 +23,32 @@ def build_tree(values: list[int]) -> TreeNode:
   return nodes[0]
 
 def main():
-  root_array = build_tree(list(map(int, input().split())))
+  root_array = list(map(int, input().split()))
   root = build_tree(root_array)
-  print(maxLevelSum(root))
+  print(maxProduct(root))
 
-def maxLevelSum(root: TreeNode) -> int:
-  def dfs(root):
-    if not root:
-      return []
-    max_sum = float('-inf')
-    max_level = level = 0
-    q = []
-    q.append(root)
-    while q:
-      size = len(q)
-      sum = 0
-      level += 1
-      for _ in range(size):
-        node = q.pop(0)
-        sum += node.val
-        if node.left:
-          q.append(node.left)
-        if node.right:
-          q.append(node.right)
-      if sum > max_sum:
-        max_sum = sum
-        max_level = level
-    return max_level
-  return dfs(root)
+def maxProduct(root: TreeNode) -> int:
+  def calculate_sum(node: TreeNode) -> int:
+    if not node:
+      return 0
+    return node.val + calculate_sum(node.left) + calculate_sum(node.right)
+
+  total_sum = calculate_sum(root)
+  max_product = 0
+
+  def dfs(node: TreeNode) -> int:
+    nonlocal max_product
+    if not node:
+      return 0
+    left_sum = dfs(node.left)
+    right_sum = dfs(node.right)
+    current_sum = node.val + left_sum + right_sum
+    product = (total_sum - current_sum) * current_sum
+    max_product = max(max_product, product)
+    return current_sum
+
+  dfs(root)
+  return max_product % (10 ** 9 + 7)
 
 if __name__ == '__main__':
   main()
