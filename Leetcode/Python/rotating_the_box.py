@@ -12,7 +12,7 @@ def rotateTheBox(boxGrid: list[list[str]]) -> list[list[str]]:
         p += 1
       elif boxGrid[r][c] == '*':
         p = c + 1
-  rotatedBox = [[0] * rows for _ in range(cols)]
+  rotatedBox = [[''] * rows for _ in range(cols)]
   for r in range(rows):
     for c in range(cols):
       rotatedBox[c][rows - 1 - r] = boxGrid[r][c]
