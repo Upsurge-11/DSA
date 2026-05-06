@@ -3,6 +3,7 @@ def main():
   print(rotateTheBox(boxGrid))
 
 def rotateTheBox(boxGrid: list[list[str]]) -> list[list[str]]:
+  # . is empty, * is obstacle, # is stones
   rows, cols = len(boxGrid), len(boxGrid[0])
   for r in range(rows):
     p = 0
