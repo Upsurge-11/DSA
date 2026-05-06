@@ -1,8 +1,8 @@
 def main():
-  boxGrid = [list(map(int, input().split())) for _ in range(int(input()))]
+  boxGrid = [list(map(str, input().split())) for _ in range(int(input()))]
   print(rotateTheBox(boxGrid))
 
-def rotateTheBox(boxGrid: list[list[int]]) -> list[list[int]]:
+def rotateTheBox(boxGrid: list[list[str]]) -> list[list[str]]:
   rows, cols = len(boxGrid), len(boxGrid[0])
   for r in range(rows):
     p = 0
